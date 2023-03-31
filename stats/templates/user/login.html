@@ -1,0 +1,41 @@
+{%extends 'partials/base.html'%}
+{%block title%} Login Page{%endblock%}
+{% load crispy_forms_tags %}
+
+{%block content%}
+{%if user.is_authenticated%}
+
+<h1>
+    congrats! You are logged in :)
+</h1>
+{%else%}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <h2 style="color:green">
+                {{message}}
+            </h2>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="border bg-white p-3">
+                <h3>
+                    Login Page
+                </h3>
+                <form method="POST">
+                    {%csrf_token%}
+                    {{form|crispy}}
+                    <input class="btn btn-success" type="submit" value="Login">
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endif%}
+{%endblock%}

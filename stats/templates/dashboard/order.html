@@ -1,0 +1,47 @@
+{%extends 'partials/base.html'%}
+{%block title%} Orders {%endblock title%}
+{% load crispy_forms_tags %}
+{%block content%}
+
+<div class="row my-4">
+    <div class="col-md-4">
+        <div class="card card-body">
+            <h5>Make a New Order</h5>
+            <hr>
+            <h3 style="color: red;">
+                {{message}}
+            </h3>
+            
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="btn btn-success btn-block" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table bg-white">
+            <thead class="bg-info text-white">
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Odered by</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.product }}</td>
+                    <td>{{ order.product.category }}</td>
+                    <td>{{ order.order_quantity }}</td>
+                    <td>{{ order.staff.username }}</td>
+                    <td>{{ order.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,21 @@
+{%extends 'partials/base.html'%}
+{%block title%} Orders {%endblock title%}
+
+{%block content%}
+
+
+        <div class="card card-body">
+            <h1 style="text-align: center;">
+                {%if searched%}
+                Here are your results for {{searched}}
+            </h1>
+                {%for product in products%}
+                {{product}} </br>
+                {%endfor%}
+                
+                {%else%}
+                You forgot to search for a product
+                {%endif%}
+        </div>  
+    
+{%endblock%}

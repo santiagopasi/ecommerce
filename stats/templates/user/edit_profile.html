@@ -1,0 +1,41 @@
+{%extends 'partials/base.html'%}
+{%block title%} Update Profile Page{%endblock%}
+{% load crispy_forms_tags %}
+
+{%block content%}
+{%if user.is_authenticated%}
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <h2 style="color:green">
+                {{message}}
+            </h2>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="border bg-white p-3">
+                <h3>
+                    Update Profile
+                </h3>
+                <form method="POST" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    {{form|crispy}}
+                    <input class="btn btn-success" type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%else%}
+<h3>
+    You need to be logged in to see this page.
+</h3>
+{%endif%}
+{%endblock%}

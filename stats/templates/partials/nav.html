@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{%url 'index'%}">Pasinventory</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {%if user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'dashboard'%}">Dashboard</a>
+        </li>
+        {%endif%}
+<!-- In case I would like to add a dropdown menu
+<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+
+-->
+
+        
+        
+      </ul>
+     
+      <ul class="navbar-nav mr-3">
+        {%if user.is_authenticated%}
+        {%if not request.user.profile.first_name %}
+        <h3>
+          You need to edit your profile to be part of the staf!
+        </h3>
+        {%endif%}
+        <li class="nav-item">
+          
+          <a class="nav-link" href="{%url 'user-profile'%}">
+            <button type="button" class="btn btn-light">{{user.username}} Profile</button>
+          </a>
+        </li>
+        <li class="nav-item">
+          
+          <a class="nav-link" href="{%url 'user-logout'%}">
+            <button type="button" class="btn btn-danger">Log OUT</button>
+          </a>
+        </li>
+       {%else%}
+        <li class="nav-item">
+          
+          <a class="nav-link" href="{%url 'user-login'%}">
+            <button type="button" class="btn btn-success">Log In</button>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'user-register'%}">
+            <button type="button" class="btn btn-primary">Register</button>
+          </a>
+        </li>
+        {%endif%}
+      </ul>
+      <form class="form-inline my-2 my-lg-0" method="POST" action="{%url 'search-product'%}" name="searched">
+        {%csrf_token%}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search Products" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>

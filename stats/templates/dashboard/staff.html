@@ -1,0 +1,63 @@
+{%extends 'partials/base.html'%}
+{%block title%} Staff {%endblock title%}
+
+{%block content%}
+
+<div class="row my-4">
+    <div class="col-md-4">
+      
+      <div class="card card-body">
+          <h5>Staff Page</h5>
+          <hr>
+          
+      </div>
+    </div>
+    
+      <div class="col-md-8">
+       
+        
+      <table class="table bg-white">
+          <thead class="bg-info text-white">
+            <tr>
+              
+              <th scope="col">
+                Name
+              </th>
+              <th scope="col">
+                Email
+              </th>
+              <th scope="col">
+                Avatar
+              </th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {%for worker in workers%}
+            {%if worker.first_name%}
+            <tr>
+        
+              <td>{{worker.first_name}}
+
+              </td>
+              <td>
+                {{worker.email}}
+              </td>
+              <td>
+                <img src="{{worker.image.url}}" alt="" class="img-thumbnail" width="200" height="200">
+              </td>
+              <td>
+              
+                
+              </td>
+            </tr>
+            {%endif%}
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+
+
+{%endblock%}
